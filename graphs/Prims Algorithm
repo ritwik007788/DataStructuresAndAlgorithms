@@ -1,0 +1,45 @@
+// create main function
+
+class Solution
+{
+    //Function to find sum of weights of edges of the Minimum Spanning Tree.
+    static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
+    {
+        
+        ArrayList<Integer> dist = new ArrayList<>();
+        ArrayList<Boolean> visited = new ArrayList<>();
+        
+        for(int i=0;i<V;i++){
+            visited.add(i,false);
+            dist.add(i,Integer.MAX_VALUE);
+        }
+        
+        dist.set(0,0);
+        
+        for(int i =0;i<V;i++){
+            int u = getMin(dist,visited);
+            visited.set(u,true);
+            for(ArrayList<Integer> x : adj.get(u)){
+                int vert = x.get(0);
+                int wt = x.get(1);
+                if(visited.get(vert)!=true && wt<dist.get(vert)){
+                    dist.set(vert,wt);
+                }
+            }
+        }
+        int resSum = 0;
+        for(int i = 0;i<dist.size();i++){
+            resSum += dist.get(i);
+        }
+        return resSum;
+    }
+    
+    static int getMin(ArrayList<Integer> wt,ArrayList<Boolean> vis){
+        int Min=-1;
+        for(int i=0;i<wt.size();i++){
+            if((!vis.get(i))&&(Min == -1 || wt.get(i)<wt.get(Min)))
+             Min=i;
+            }
+        return Min;
+    }
+}
