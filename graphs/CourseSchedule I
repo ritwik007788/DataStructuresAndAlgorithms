@@ -1,0 +1,48 @@
+// Leetcode #207
+
+class Solution {
+     ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+    
+    public boolean canFinish(int numCourses, int[][] prereq) {
+       
+        
+        for(int i =0; i<numCourses ; i++){
+            adj.add(new ArrayList<Integer>());
+        }
+        
+        int rows = prereq.length;
+        
+        for(int i=0;i<rows;i++){
+            adj.get(prereq[i][1]).add(prereq[i][0]);
+        }
+        
+        return isCyclic(numCourses,prereq)?false:true;
+        
+    }
+    
+    public boolean isCyclic(int numCourses, int[][] prereq){
+        boolean visited[] = new boolean[numCourses];
+        boolean recStack[] = new boolean[numCourses];
+        
+        for(int i =0;i<numCourses;i++){
+            if(isCyclicUtil(i,visited,recStack)) return true;
+        }
+        return false;
+    }
+    
+    public boolean isCyclicUtil(int i , boolean[] visited , boolean[] recStack){
+        
+        if (recStack[i]) return true;
+        if(visited[i]) return false;
+        
+        visited[i] = true;
+        recStack[i] = true;
+        
+        for(int x : adj.get(i)){
+            if(isCyclicUtil(x,visited,recStack)) return true;
+        }
+        recStack[i] = false;
+        return false;
+    }
+    
+}
