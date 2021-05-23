@@ -1,0 +1,29 @@
+class Solution
+{
+    //Function to return Breadth First Traversal of given graph.
+    Queue<Integer> q = new LinkedList<>();
+    public ArrayList<Integer> bfsOfGraph(int V,ArrayList<ArrayList<Integer>> adj)
+    {
+        ArrayList<Integer> res = new ArrayList<>();
+        boolean visited[] = new boolean[V];
+        bfsUtil(0,visited,res,adj);
+        return res;
+    }
+    public void bfsUtil(int node,boolean[] visited,ArrayList<Integer> res,ArrayList<ArrayList<Integer>> adj){
+        visited[node] = true;
+        q.add(node);// adding the 1st node
+        
+        while(q.size()!=0){
+            node = q.poll();
+            res.add(node);
+            
+            for(int i : adj.get(node)){
+                if(visited[i] == false){ // add all the unvisited adjacent nodes
+                    q.add(i);
+                    visited[i]=true;
+                }
+            }
+            
+        }
+    }
+}
