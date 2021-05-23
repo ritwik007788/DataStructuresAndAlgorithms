@@ -1,0 +1,24 @@
+class Solution
+{
+    //Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        //V is the no. of vertices
+        // adj is the adjacency list
+        
+        ArrayList<Integer> res = new ArrayList<>(); // result 
+        boolean visited[] = new boolean[V]; // vector to mark visited vertices of the graph
+        dfsUtil(0,visited,res,adj);
+        return res;
+    }
+    // Utility func to traverse the graph
+    static void dfsUtil(int node,boolean[] visited,ArrayList<Integer> res,ArrayList<ArrayList<Integer>> adj){
+        visited[node] = true;
+        res.add(node);
+        for(int i : adj.get(node)){
+            if(visited[i]==false){
+                dfsUtil(i,visited,res,adj);
+            }
+        }
+    }
+}
