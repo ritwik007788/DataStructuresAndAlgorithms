@@ -1,0 +1,55 @@
+class Solution
+{
+    //Function to find the shortest distance of all the vertices
+    //from the source vertex S.
+    static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
+    {
+        // Write your code here
+        int dist[] = new int[V];
+        boolean sptSet[] = new boolean[V];
+        
+        for(int i=0;i<V;i++){
+            dist[i] = Integer.MAX_VALUE;
+            sptSet[i] = false;
+        }
+        
+        dist[S] = 0;// shortest path of source is zero
+        
+        while(true){
+            // u is the minimum index node
+            int u = minDistance(dist,sptSet,V);
+            if(u==-1) break;
+            
+            sptSet[u] = true;
+            
+            for (int i = 0; i < adj.get(u).size(); i++){
+                int v = adj.get(u).get(i).get(0);
+                int costUV = adj.get(u).get(i).get(1);
+                if(!sptSet[v] && dist[u]+costUV < dist[v]){
+                    dist[v] = dist[u]+costUV;
+                }
+            }
+            
+            
+        }
+        
+        return dist;
+        
+        
+        
+    }
+    
+    static int minDistance(int dist[], boolean sptSet[],int V)
+    {
+        // Initialize min value
+        int min = Integer.MAX_VALUE, min_index = -1;
+  
+        for (int v = 0; v < V; v++)
+            if (sptSet[v] == false && dist[v] <= min) {
+                min = dist[v];
+                min_index = v;
+            }
+  
+        return min_index;// returns -1 at the end 
+    }
+}
