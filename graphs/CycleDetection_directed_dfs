@@ -1,0 +1,30 @@
+class Solution 
+{
+    //Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        boolean visited[] = new boolean[V];
+        boolean recStack[] = new boolean[V];
+        
+        for(int i=0;i<V;i++){
+            if(isCyclicUtil(i, visited, recStack,adj)) return true; // dfs call
+        }
+        return false;
+    }
+    
+    public boolean isCyclicUtil(int i,boolean[] visited,boolean[] recStack,ArrayList<ArrayList<Integer>> adj){
+        
+        if(recStack[i]) return true; // if we have the element in current stack
+        if(visited[i]) return false; // if already visited and failed to find loop
+        
+        visited[i] = true;
+        recStack[i] = true;
+        
+        for(int x : adj.get(i)){
+            if(isCyclicUtil(x,visited,recStack,adj)) return true;
+        }
+        recStack[i] = false; // remove element from recStack
+        return false;
+    }
+    
+}
