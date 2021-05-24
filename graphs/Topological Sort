@@ -1,0 +1,32 @@
+// gfg
+
+class Solution
+{
+    //Function to return list containing vertices in Topological order. 
+    static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
+    {
+        boolean visited[] = new boolean[V];
+        Stack<Integer> st = new Stack<Integer>();
+        for(int i = 0;i < V ; i++){
+            if(visited[i] ==  false) dfsUtil(i,visited,adj,st);
+        }
+        
+        int res[] = new int[V];
+        
+        for(int i=0;i<V;i++){
+            res[i] = st.pop();
+        }
+        return res;
+    }
+    static void dfsUtil(int node , boolean[] visited , ArrayList<ArrayList<Integer>> adj , Stack<Integer> st){
+        visited[node] = true;
+        for(int x : adj.get(node)){
+            if(visited[x] == false) dfsUtil(x,visited,adj,st);
+        }
+        st.push(node);
+    }
+}
+
+//FIRST DFS
+//THEN FILL STACK WHILE BACKTRACKING
+//RETURN STACK IN REVERSE ORDER
