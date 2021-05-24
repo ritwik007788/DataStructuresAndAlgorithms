@@ -1,0 +1,41 @@
+// gfg flyod warshall
+
+
+class Solution
+{
+    public void shortest_distance(int[][] matrix)
+    {
+        int INF = Integer.MAX_VALUE;
+		int n = matrix.length;
+		
+    // for unreachable nodes we replace -1 with infinity
+    
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				if(matrix[i][j] == -1)
+					matrix[i][j] = INF;
+			}
+		}
+		
+    // K is the node we are add.As a result we check i --> k and k --> j.
+    
+		for (int k = 0; k < n; ++k) {
+		    for (int i = 0; i < n; ++i) {
+		        for (int j = 0; j < n; ++j) {
+		            if (matrix[i][k] < INF && matrix[k][j] < INF 
+		                    && matrix[i][k] + matrix[k][j] < INF)
+		                matrix[i][j] = Math.min(matrix[i][j], matrix[i][k] + matrix[k][j]); 
+		        }
+		    }
+		}
+    
+    // change infinity back to -1 before returning 
+    
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				if(matrix[i][j] >= INF)
+					matrix[i][j] = -1;
+			}
+		}
+    }
+}
