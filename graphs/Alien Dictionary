@@ -1,0 +1,65 @@
+class Solution {
+    public String alienOrder(String[] words) {
+        
+        //Inintialization
+        
+        HashMap<Character , ArrayList<Character>> adjList = new HashMap<>();
+        // create a hashmap that stores the indegree count 
+        HashMap<Character , Integer> counts = new HashMap<>();
+        for(String s : words){
+            for(char c : s.toCharArray()){
+                counts.put(c , 0);
+                adjList.put(c , new ArrayList<>());
+            }
+        }
+        
+        //Finding edges
+        
+        for(int i = 0 ; i<words.length-1 ; i++){
+            String word1 = words[i];
+            String word2 = words[i+1];
+            
+             // Check that word2 is not a prefix of word1.
+            if (word1.length() > word2.length() && word1.startsWith(word2)) {
+                return "";
+            }
+            
+            // we find the first non-matching element
+            
+            for(int j = 0; j<Math.min(word1.length(),word2.length());j++){
+                 if (word1.charAt(j) != word2.charAt(j)){
+                    adjList.get(word1.charAt(j)).add(word2.charAt(j));
+                    counts.put(word2.charAt(j), counts.get(word2.charAt(j)) + 1);
+                    break;// we dont need to consider the letters beyond this
+                 }  
+             }
+        }
+        
+        // Now are result will be the result of bfs
+        // bfs :-
+        
+        StringBuilder sb = new StringBuilder();
+        Queue<Character> q = new LinkedList<>();
+        for(Character c : counts.keySet()){
+            if(counts.get(c).equals(0)){// include elements having no indegree edges
+                q.add(c);
+            }
+        }
+        
+        while(!q.isEmpty()){
+            Character c = q.poll();
+            sb.append(c);
+            for(Character next : adjList.get(c)){
+                counts.put(next,counts.get(next)-1);
+                if(counts.get(next).equals(0)){
+                    q.add(next);
+                }
+            }
+        }
+        
+        if (sb.length() < counts.size()) {
+        return "";
+    }
+    return sb.toString();
+}
+}
