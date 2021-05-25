@@ -1,0 +1,60 @@
+// leetcode #133
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> neighbors;
+    public Node() {
+        val = 0;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val) {
+        val = _val;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val, ArrayList<Node> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+}
+*/
+
+class Solution {
+    public Node cloneGraph(Node node) {
+        
+        if(node == null) return null;
+        Node[] visited = new Node[101];
+        
+        Node newNode = new Node(node.val);
+        visited[node.val] = newNode;
+        
+        for(Node curr : node.neighbors){
+            if(visited[curr.val] == null){
+                Node copy = new Node(curr.val);
+                newNode.neighbors.add(copy);
+                dfs(curr,copy,visited);
+            }
+            else{
+                newNode.neighbors.add(visited[curr.val]);
+            }
+        }
+        
+        return newNode;
+    }
+    
+    public void dfs(Node curr , Node copy , Node[] visited){
+        visited[curr.val] = copy;
+        for(Node ele : curr.neighbors)
+        {
+            if(visited[ele.val] == null)
+            {
+                Node temp = new Node(ele.val);
+                copy.neighbors.add(temp);
+                dfs(ele,temp,visited);
+            }
+            else
+                copy.neighbors.add(visited[ele.val]);
+        }
+    }
+}
