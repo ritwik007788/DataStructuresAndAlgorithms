@@ -1,0 +1,49 @@
+// gfg : Remove loop in Linked List 
+
+
+/*
+class Node
+{
+    int data;
+    Node next;
+}
+*/
+
+class Solution
+{
+    //Function to remove a loop in the linked list.
+    public static void removeLoop(Node head){
+        // code here
+        // remove the loop without losing any nodes
+        Node same = checkLoop(head);
+        Node p = head;
+        
+        if(same != null){
+           while(p != same){
+            p=p.next;
+            same=same.next;
+            }
+           while(p != same.next){
+            same = same.next;
+            }
+
+            same.next = null;
+        }
+        
+    }
+    
+    public static Node checkLoop(Node head){
+        Node i = head;
+        Node j = head;
+        if(head==null) return null;
+        
+        while(j.next!=null && j.next.next !=null){
+            i = i.next;
+            j= j.next.next;
+            
+            if(i==j) return i;
+            
+        }
+        return null;
+    }
+}
