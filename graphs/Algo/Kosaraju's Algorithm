@@ -1,0 +1,85 @@
+// fining strongly connected components in undirected graph
+// gfg : Strongly Connected Components (Kosaraju's Algo) 
+
+class Solution
+{
+    //Function to find number of strongly connected components in the graph.
+    public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        //code here
+        Stack<Integer> stack = new Stack<Integer>();
+        boolean visited[] = new boolean[V];
+        
+        Arrays.fill(visited,false);
+        
+        // dfs is called for the first time and elements are added to the stack.
+        
+        for(int i=0;i<V;i++){
+            if(visited[i]==false) dfs1(i,stack,visited,adj);
+        }
+        
+        // reversing the list.
+        
+        ArrayList<ArrayList<Integer>> revlist = new ArrayList<ArrayList<Integer>>();
+     
+         for(int i=0; i<V; i++)
+         {
+             revlist.add(new ArrayList<Integer>());
+         }
+         reverse(revlist, adj);
+        
+        // visted array is reset.
+        
+        Arrays.fill(visited,false);
+        int cnt = 0;
+        
+        // final dfs untill stack is empty
+        
+        while(!stack.isEmpty())
+         {
+             int node = stack.pop();
+             if(visited[node] == false)
+             {
+                 cnt++;
+                 dfs2(revlist, visited, node);
+             }
+         }
+    return cnt;
+}
+        
+
+    
+    public void dfs1(int node , Stack<Integer> stack , boolean[] visited , ArrayList<ArrayList<Integer>> adj){
+        visited[node] = true;
+        for(int x : adj.get(node)){
+            if(visited[x] == false) dfs1(x,stack,visited,adj);
+        }
+        
+        stack.push(node);
+    }
+    
+    static void reverse(ArrayList<ArrayList<Integer>> revlist, ArrayList<ArrayList<Integer>> list)
+    {
+        for(int i=0; i<list.size(); i++)
+        {
+            for(int j=0; j<list.get(i).size(); j++)
+            {
+                int num = list.get(i).get(j);
+                revlist.get(num).add(i);
+            }
+        }
+    }
+    
+    static void dfs2(ArrayList<ArrayList<Integer>> revlist, boolean visited[], int start)
+    {
+        visited[start]=true;
+        
+        for(int i : revlist.get(start))
+        {
+            if(visited[i]==false)
+            {
+                dfs2(revlist,visited,i);
+            }
+        }
+    }
+}
