@@ -1,0 +1,38 @@
+//Leetcode #19
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0); // to avoid edge cases
+        dummy.next = head;
+        ListNode l = dummy;
+        ListNode r = dummy;
+        
+        // we maintain a distance of n+1 between the two nodes
+        
+        for(int i = 0; i<n+1;i++){
+            r = r.next;
+        }
+        
+        // traverse till r reaches the end 
+        
+        while(r!=null){
+            l = l.next;
+            r = r.next;
+        }
+        
+        // delete the nth node 
+        
+        l.next = l.next.next;
+        return dummy.next;
+    }
+}
