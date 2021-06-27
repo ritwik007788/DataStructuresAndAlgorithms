@@ -1,6 +1,16 @@
 // gfg : Remove loop in Linked List 
 
 
+************************************************************
+CONSIDER A TESTCASE WHERE THE LOOP IS DEFINED ON THE HEAD NODE 
+
+1 -> 2 -> 3 
+^         |
+|         |
+-- 4 <----
+
+************************************************************
+
 /*
 class Node
 {
@@ -15,19 +25,19 @@ class Solution
     public static void removeLoop(Node head){
         // code here
         // remove the loop without losing any nodes
-        Node same = checkLoop(head);
+        Node same = checkLoop(head); // return the same node 
         Node p = head;
         
-        if(same != null){
-           while(p != same){
+        if(same != null){ // if loop is absent same = null
+           while(p != same){ // first find the colliding node
             p=p.next;
             same=same.next;
             }
-           while(p != same.next){
+           while(p != same.next){ // then iterate same to find the last node of the non -  circular linked List
             same = same.next;
             }
 
-            same.next = null;
+            same.next = null; // make the LinkedList non-circular
         }
         
     }
