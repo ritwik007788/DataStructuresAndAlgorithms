@@ -1,0 +1,20 @@
+#Leetcode 136
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        // we use bit manipulation technique here
+        // xor of like elements is 0
+        // xor of 0 and an element is that element
+        // since all elements are repeated twice other that one.
+        // Hence, the xor of the repeating elements will be 0 leaving only the non - repeating
+        // element and o. xor of those two elememts will be the non - repeating element
+        
+        int a =0;
+        
+        for(int i : nums){
+            a ^=i;
+        }
+        
+        return a;
+    }
+}
