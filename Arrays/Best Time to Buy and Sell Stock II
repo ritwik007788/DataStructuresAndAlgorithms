@@ -1,0 +1,20 @@
+#Leetcode 122
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int curr = 0;
+        int next = 1 ;
+        int profit = 0;
+        
+        // basic idea is to buy everytime we observe a profit
+        
+        while(next<prices.length){
+            if(prices[curr]<prices[next]){
+                profit+=prices[next]-prices[curr];
+            }
+            curr++;
+            next++;
+        }
+        return profit;
+    }
+}
