@@ -1,0 +1,23 @@
+#GFG
+
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        int i=0,j=0,k=n-1;
+        while(i<=k && j<m){
+            if(arr2[j]<arr1[i]){
+                int temp = (int)arr2[j];
+                arr2[j++] = arr1[k];
+                arr1[k--] = temp;
+            }
+            else{
+                i++;
+            }
+        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+    }
+}
