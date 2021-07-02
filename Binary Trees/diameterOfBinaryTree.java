@@ -1,5 +1,7 @@
 //gfg
 
+//longest path between two leaves
+
 class Solution {
     // Function to return the diameter of a Binary Tree.
     public int diameter(Node root) {
