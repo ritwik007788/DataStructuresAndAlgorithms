@@ -25,14 +25,17 @@ class Solution {
             int left2 = (part2 ==0)? Integer.MIN_VALUE : nums2[part2-1];
             int right1 = (part1 ==length1)? Integer.MAX_VALUE : nums1[part1];
             int right2 = (part2 == length2)? Integer.MAX_VALUE : nums2[part2];
+            
   
             if(left1<=right2 && left2<=right1){
-                return getamongFour(left1,left2,right1,right2,length1+length2);
-            }else if(part1<high && left2>right1){
-                low = part1+1;
-            }else {
-                high = part1-1;
-            }            
+                            return getamongFour(left1,left2,right1,right2,length1+length2);
+                        }
+            else if(left1>right2){
+                            high = part1-1;
+                        }
+            else {
+                            low = part1+1;
+                        }            
         }
        return 0.0; 
     }
