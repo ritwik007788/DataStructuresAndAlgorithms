@@ -1,4 +1,4 @@
-// can be used to sort HashMaps , Lists , 2Darrays(merge intervals) etc.
+// can be used to sort HashMaps , Lists , 2Darrays(merge intervals) , Stings(Top k freq words) etc.
 // general format:
 //(a,b) -> (write sorting mechanism using 0,1,-1)
 
@@ -39,4 +39,7 @@ Collections.sort(list,(a,b) -> (map.get(a)>map.get(b))?1:(map.get(a)<map.get(b))
                  // technique used in merge intervals
                  Arrays.sort(arr , (a,b) -> (a[0]>b[0])?-1:(a[0]<b[0])?1:0;
                              
+//
                  
+list is a list of strings like "hello" , "i" , "coding" etc;
+                             Collections.sort(list,(a,b) -> a.equals(b)?a.compareTo(b): b - a; // sorts in descending order
