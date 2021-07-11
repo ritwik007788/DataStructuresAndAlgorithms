@@ -53,10 +53,13 @@ class Solution
     void mergeSort(int arr[], int l, int r)
     {
         //code here
-        int mid = l + (r-l)/2;
-        mergeSort(arr,l,mid);
-        mergeSort(arr,mid+1,r);
+        if(l<r){ // condition to stop when 1 element is left
+            int mid = l + (r-l)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+
+            merge(arr,l , mid , r);
+        }
         
-        merge(arr,l , mid , r);
     }
 }
