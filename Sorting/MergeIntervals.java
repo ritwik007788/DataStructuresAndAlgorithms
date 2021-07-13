@@ -2,7 +2,7 @@
 
 class Solution {
     public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals , (a,b) -> Integer.compare(a[0],b[0]));
+        Arrays.sort(intervals , (a,b) -> a[0]<b[0]?-1:a[0]>b[0]?1:0);
         
         LinkedList<int[]> merged = new LinkedList<>();
         
