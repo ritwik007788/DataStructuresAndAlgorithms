@@ -19,6 +19,8 @@ public class Demo {
                               "before sorting : " + al);
   
         // using lambda expression in place of comparator object
+      
+      // -1 means this arrangement comes first, then comes the 0 case arrangement and finally the 1 case arrangement
         Collections.sort(al, (o1, o2) -> (o1 > o2) ? -1 : (o1 < o2) ? 1 : 0);  // sorting in descending order
   
         System.out.println("Elements of the ArrayList after" + 
@@ -39,7 +41,6 @@ Collections.sort(list,(a,b) -> (map.get(a)>map.get(b))?1:(map.get(a)<map.get(b))
                  // technique used in merge intervals
                  Arrays.sort(arr , (a,b) -> (a[0]>b[0])?-1:(a[0]<b[0])?1:0;
                              
-//
-                 
-list is a list of strings like "hello" , "i" , "coding" etc;
+// LIST OF STRINGS                 
+// list is a list of strings like "hello" , "i" , "coding" etc;
                              Collections.sort(list,(a,b) -> a.equals(b)?a.compareTo(b): b - a; // sorts in descending order
