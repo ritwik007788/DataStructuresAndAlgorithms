@@ -28,11 +28,12 @@ class Solution {
             int prev =(mid+nums.length-1)%nums.length;
             if(nums[mid]<nums[prev] && nums[mid]<nums[next]){
                 index = mid;
+                break;
             }
             
-            if(nums[0]<=nums[mid])l=mid+1;
+            else if(nums[0]<=nums[mid])l=mid+1;
             
-            if(nums[nums.length-1]>=nums[mid])r=mid-1;
+            else if(nums[nums.length-1]>=nums[mid])r=mid-1;
             
         }
         
