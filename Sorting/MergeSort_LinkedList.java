@@ -1,51 +1,53 @@
-//gfg
+//Leetcode 148
 
-/*
-class Node
-{
-    int data;
-    Node next;
-    Node(int key)
-    {
-        this.data = key;
-        next = null;
-    }
-} */
-
-class Solution
-{
-    //Function to sort the given linked list using Merge Sort.
-    static Node mergeSort(Node head)
-    {
-        // add your code here
+class Solution {
+    public ListNode sortList(ListNode head) {
         if(head==null || head.next==null)
             return head;
         
-        Node mid = findMid(head);
-        Node newHead = mid.next;
+        ListNode mid = findMid(head);
+        ListNode newHead = mid.next;
         mid.next = null;
         
-        return merge(mergeSort(head),mergeSort(newHead));
+        return merge(sortList(head),sortList(newHead));
     }
-
     
-    static Node merge(Node l1 , Node l2){
-        if(l1==null) return l2;
-        if(l2 == null) return l1;
-        
-        if(l1.data<l2.data){
-            l1.next= merge(l1.next,l2);
-            return l1;
+    public ListNode merge(ListNode A, ListNode B){
+        if(A==null) return B;
+        if(B==null) return A;
+        ListNode dummy = new ListNode(0);
+        ListNode curr1 = A;
+        ListNode curr2 = B;
+        ListNode node = dummy;
+        while(curr1!=null && curr2!=null){
+            if(curr2.val <= curr1.val){
+                node.next = new ListNode(curr2.val);
+                node = node.next;
+                curr2 = curr2.next;
+            }
+            else{
+                node.next = new ListNode(curr1.val);
+                node = node.next;
+                curr1 = curr1.next;
+            }
+            
+        }
+
+        if(curr1!=null){
+            node.next = curr1; 
         }
         else{
-            l2.next = merge(l1,l2.next);
-            return l2;
+            node.next = curr2;
         }
+        return dummy.next;
+        
+
     }
     
-    static Node findMid(Node head){
-        Node f = head;
-        Node s = head;
+    
+    public ListNode findMid(ListNode head){
+        ListNode f = head;
+        ListNode s = head;
         while(f.next!=null && f.next.next!=null){
             f = f.next.next;
             s = s.next;
