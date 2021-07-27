@@ -46,5 +46,28 @@ class Solution {
                                                     ---------------
 ----------------------------------------------------1 pass solution----------------------------------------------------
                                                     ---------------
+                                                      
+public class Solution {
+    public int largestRectangleArea(int[] A) {
+        int n = A.length;
+        Stack<Integer> st = new Stack<>();
+        int maxA = 0 ;
+
+        for(int i = 0 ; i <= n ; i++){// <= as we need to deal with the remaining elements of the stack
+            while(!st.isEmpty() && (i==n || A[st.peek()]>=A[i])){
+                int height = A[st.peek()]; // take the height as the element about to be popped
+                st.pop();
+                int width = 0;
+                if(st.isEmpty()) width = i; // width starting from 0
+                else width = i - st.peek() - 1; // window size
+
+                maxA = Math.max(maxA,height*width);
+            }
+            st.push(i); // always push
+        }
+
+        return maxA;
+    }
+}
       
  
