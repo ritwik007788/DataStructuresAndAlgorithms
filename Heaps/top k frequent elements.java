@@ -1,4 +1,4 @@
-//gfg
+//Leetcode 347
 
 class Solution {
     public int[] topK(int[] nums, int k) {
