@@ -5,13 +5,12 @@ class Solution {
         PriorityQueue<Pair> maxHeap = new PriorityQueue<Pair>(Collections.reverseOrder());
         
         for(int[] i : points){
-            maxHeap.add(new Pair(i[0]*i[0]+i[1]*i[1],i[0],i[1]));
+            maxHeap.add(new Pair(i[0]*i[0]+i[1]*i[1],i[0],i[1])); // instead of sqrt(x^2 + y^2) we are using (x^2 + y^2) as our distance
             
             while(maxHeap.size()>k){
                 maxHeap.poll();
             }
         }
-        // int i = points.length - k ;
         int i = 0;
         int[][] res = new int[k][2];
         while(maxHeap.size()>0){
