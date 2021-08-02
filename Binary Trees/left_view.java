@@ -27,7 +27,7 @@ class Tree
           int n = q.size();
           for(int i = 0 ; i < n ; i++){
               Node curr = q.poll();
-              if(i == n-1) list.add(curr.data);
+              if(i == 0) list.add(curr.data);
               if(curr.right!=null) q.add(curr.right);
               if(curr.left!=null) q.add(curr.left);
           }
