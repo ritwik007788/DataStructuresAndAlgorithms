@@ -35,9 +35,9 @@ class Solution {
         for(int i = 1 ; i < n ; i++){
             dp[i] = Integer.MAX_VALUE;
             for(int j = 0 ; j < i ; j++){
-                if(j+arr[j]>=i && dp[j]!=Integer.MAX_VALUE){
+                if(j+arr[j]>=i){
                     dp[i] = Math.min(dp[i],1+dp[j]);
-                    break;
+                    
                 }
             }
         }
