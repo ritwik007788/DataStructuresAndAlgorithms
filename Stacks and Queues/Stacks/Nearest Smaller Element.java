@@ -1,5 +1,7 @@
 //InterviewBit
 
+// To find the next smaller element to the left
+
 public class Solution {
     public int[] prevSmaller(int[] A) {
         Stack<Node> st = new Stack();
