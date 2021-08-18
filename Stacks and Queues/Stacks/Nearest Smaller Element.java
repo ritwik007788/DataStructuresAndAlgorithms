@@ -2,6 +2,35 @@
 
 public class Solution {
     public int[] prevSmaller(int[] A) {
+        Stack<Node> st = new Stack();
+        int[] res = new int[A.length];
+        for(int i = A.length-1 ; i >=0 ; i--){
+            while(!st.isEmpty() && st.peek().data > A[i]){
+                res[st.pop().index] = A[i];
+            }
+            st.push(new Node(A[i],i));
+        }
+        for(int i = 0 ; i < res.length ; i++){
+            if(res[i]==0) res[i] = -1;
+        }
+        return res;
+    }
+}
+
+class Node{
+    int data;
+    int index;
+
+    Node(int data , int index){
+        this.data = data;
+        this.index = index;
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+public class Solution {
+    public int[] prevSmaller(int[] A) {
         Stack<Integer> stack = new Stack<>();
         int res[] = new int[A.length];
 
