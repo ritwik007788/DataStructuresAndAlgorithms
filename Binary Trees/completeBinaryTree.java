@@ -9,7 +9,7 @@ class GfG
           
           return solve(root,0,n);
 	}
-	int countNodes(Node root){
+	int countNodes(Node root){//function to count the total no. of nodes in the Binary Tree
 	    if(root==null) return 0;
 	    return 1+countNodes(root.left)+countNodes(root.right);
 	}
@@ -17,7 +17,7 @@ class GfG
 	boolean solve(Node root , int index , int countNodes){
 	    if(root==null) return true;
 	    
-	    if(index>=countNodes) return false;
+	    if(index>=countNodes) return false; // if child doesn't exist then false
 	    
 	    return (solve(root.left , 2*index+1 , countNodes) && 
 	    solve(root.right , 2*index+2 , countNodes));
