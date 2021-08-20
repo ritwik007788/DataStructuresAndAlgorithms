@@ -1,0 +1,21 @@
+Types of Binary trees 
+
+1.) Perfect Binary Tree
+
+All nodes can have either 2 children on no child. The leaf nodes must be on the same left(i.e the last level is only leaf nodes)
+
+to check for perfect binary tree  -  if the height of the tree is h. Then the total no. of nodes in the tree will be 2^(h+1) - 1 or Math.pow(2,h+1) - 1 .
+
+
+2.) Complete Binary Tree
+
+A complete binary tree is a binary tree in which all the levels are completely filled except possibly the lowest one, which is filled from the left.
+i.e all the levels are completeley filled and in the last level leaves are filled from left direction(but the last level may or may not be completeley filled).
+
+to check complete binary tree - the children of the node at index i is at 2*i+1(left child) and 2*i+2(right child).So we count the no. of nodes and 
+                                check wether the child node is present in the total no. of nodes.
+                                
+
+3.)Full Binary tree
+
+All nodes can either have 0 or 2 children. (level doesn't matter here)
