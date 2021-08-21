@@ -2,7 +2,7 @@ Types of Binary trees
 
 1.) Perfect Binary Tree
 
-All nodes can have either 2 children on no child. The leaf nodes must be on the same left(i.e the last level is only leaf nodes)
+All nodes can have either 2 children on no child. The leaf nodes must be on the same level(i.e the last level is only leaf nodes)
 
 to check for perfect binary tree  -  if the height of the tree is h. Then the total no. of nodes in the tree will be 2^(h+1) - 1 or Math.pow(2,h+1) - 1 .
 
