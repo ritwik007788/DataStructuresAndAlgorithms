@@ -26,7 +26,7 @@ public class Solution {
 
         if(root==null) return false;
         
-        arr.add(x);
+        arr.add(root.val);
         
         if(root.val == x) {
             return true;
@@ -35,7 +35,7 @@ public class Solution {
             return true;
         }
         
-        arr.remove(arr.size()-1);// path doesn't exist.Hence, we remove this node
+        arr.remove(arr.size()-1);// path doesn't exist via this node .Hence, we remove this node
         return false;
     }
 
