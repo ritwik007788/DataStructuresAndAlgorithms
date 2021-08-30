@@ -25,15 +25,17 @@ public class Solution {
     public boolean getPath(TreeNode root , ArrayList<Integer> arr , int x){
 
         if(root==null) return false;
+        
+        arr.add(x);
+        
         if(root.val == x) {
-            arr.add(x);
             return true;
         }
-        arr.add(root.val);
-        if(getPath(root.left,arr,x) || getPath(root.right,arr,x)){
+        if(getPath(root.left,arr,x) || getPath(root.right,arr,x)){ // path exists in either left or right subtree
             return true;
         }
-        arr.remove(arr.size()-1);
+        
+        arr.remove(arr.size()-1);// path doesn't exist.Hence, we remove this node
         return false;
     }
 
