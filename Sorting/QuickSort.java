@@ -25,7 +25,7 @@ public class roughwork {
 		
 		if(l<r) {
 			
-			int pivot = partition(arr,l,r);
+			int pivot = partition(arr,l,r);//brings the pivot element in the correct position
 			
 			quicksort(arr,l,pivot-1);
 			quicksort(arr,pivot+1,r);
